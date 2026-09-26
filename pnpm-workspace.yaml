@@ -1,4 +1,4 @@
 packages:
-    - "app"
-    - "shared"
-    - "studio"
+  - 'app'
+  - 'shared'
+  - 'studio'

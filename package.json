@@ -1,5 +1,12 @@
 {
-	"name": "portfolio",
-	"private": true,
-	"packageManager": "pnpm@9.15.0"
+  "name": "portfolio",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "devDependencies": {
+    "prettier": "3.9.9"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
 }
