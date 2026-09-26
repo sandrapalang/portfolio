@@ -8,6 +8,7 @@
     "simple-import-sort/*",
     "import/first",
     "import/newline-after-import",
-    "import/no-duplicates"
+    "import/no-duplicates",
+    "react/jsx-sort-props"
   ]
 }
