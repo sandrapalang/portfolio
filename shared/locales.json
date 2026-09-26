@@ -1,0 +1,13 @@
+{
+  "defaultLocale": "en",
+  "locales": [
+    {
+      "code": "sv",
+      "title": "Svenska"
+    },
+    {
+      "code": "en",
+      "title": "English"
+    }
+  ]
+}

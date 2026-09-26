@@ -1,0 +1,9 @@
+[
+  {
+    "singletonName": "homePage",
+    "hasSingletonSlug": true,
+    "onlyInApp": false,
+    "includeInSitemap": false,
+    "isSearchable": true
+  }
+]
