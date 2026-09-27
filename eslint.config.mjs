@@ -1,3 +1,4 @@
+import sanity from '@sanity/eslint-config-studio'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import prettier from 'eslint-config-prettier/flat'
 import importPlugin from 'eslint-plugin-import'
@@ -5,6 +6,7 @@ import react from 'eslint-plugin-react'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export default defineConfig([
+  ...sanity,
   prettier,
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -38,13 +40,21 @@ export default defineConfig([
       ],
       'simple-import-sort/exports': 'error',
     },
+    settings: {
+      react: {
+        version: '19',
+      },
+      sanity: {
+        rootDir: 'studio/',
+      },
+    },
   },
   globalIgnores([
     '**/.next/**',
     '**/out/**',
     '**/build/**',
-    '**/dist/**',
-    '**/node_modules/**',
-    '**/.turbo/**',
+    'app/src/lib/sanity/types.ts',
+    'next-env.d.ts',
+    '**/.sanity/**',
   ]),
 ])
