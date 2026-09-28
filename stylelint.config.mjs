@@ -4,6 +4,13 @@ const config = {
   rules: {
     'order/properties-alphabetical-order': true,
     'order/custom-properties-alphabetical-order': true,
+    'value-keyword-case': [
+      'lower',
+      {
+        ignoreProperties: ['font-family', 'font'],
+        ignoreKeywords: ['BlinkMacSystemFont'],
+      },
+    ],
   },
 }
 
