@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getMessages } from 'next-intl/server'
 import type { ReactNode } from 'react'
 
+import Header from '@/components/header'
 import Providers from '@/components/providers'
 import { routing } from '@/lib/i18n/routing'
 
@@ -28,6 +29,7 @@ const RootLayout = async ({
     <html lang={locale}>
       <body>
         <Providers locale={locale} messages={messages}>
+          <Header />
           {children}
         </Providers>
       </body>

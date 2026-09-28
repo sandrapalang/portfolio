@@ -1,5 +1,6 @@
 @use './reset';
 @use './tokens';
+@use '@/styles/breakpoints' as bp;
 
 html {
   height: 100%;
@@ -10,4 +11,34 @@ body {
   color: var(--primary-text);
   font-family: var(--font-family);
   min-height: 100vh;
+}
+
+header {
+  padding: 16px;
+
+  @include bp.bp-up('768') {
+    padding: 24px;
+  }
+
+  @include bp.bp-up('1440') {
+    padding: 32px;
+  }
+
+  @include bp.bp-up('1920') {
+    padding: 40px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 400;
+
+  &.spacing {
+    letter-spacing: 0.025em;
+  }
 }
