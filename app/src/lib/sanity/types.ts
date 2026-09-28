@@ -33,6 +33,15 @@ export type HomePage = {
   language?: string
 }
 
+export type Header = {
+  _id: string
+  _type: 'header'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+}
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -155,6 +164,7 @@ export type Slug = {
 export type AllSanitySchemaTypes =
   | SeoSettings
   | HomePage
+  | Header
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions

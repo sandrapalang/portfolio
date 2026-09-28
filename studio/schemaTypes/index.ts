@@ -1,4 +1,5 @@
+import header from './documents/header'
 import homePage from './documents/home-page'
 import seoSettings from './objects/seo-settings'
 
-export const schemaTypes = [homePage, seoSettings]
+export const schemaTypes = [header, homePage, seoSettings]
