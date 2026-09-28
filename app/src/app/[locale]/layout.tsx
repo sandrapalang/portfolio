@@ -5,6 +5,8 @@ import type { ReactNode } from 'react'
 import Providers from '@/components/providers'
 import { routing } from '@/lib/i18n/routing'
 
+import '@/styles/globals.scss'
+
 export const metadata: Metadata = {
   title: 'Frontend Developer — Sandra Paläng',
 }

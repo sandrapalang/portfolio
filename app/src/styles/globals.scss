@@ -1,0 +1,13 @@
+@use './reset';
+@use './tokens';
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  font-family: var(--font-family);
+  min-height: 100vh;
+}
