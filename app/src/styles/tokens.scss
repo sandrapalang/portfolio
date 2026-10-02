@@ -1,3 +1,6 @@
+@use '@/styles/spacing' as s;
+@include s.define-grid-css-vars;
+
 :root {
   --font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   --primary-bg: #f9f7f2;

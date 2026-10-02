@@ -1,6 +1,7 @@
+import PageHeader from '../page-header'
+
 type HomePageTemplateProps = {
   homePage: {
-    title?: string
     preamble?: string
   }
 }
@@ -8,8 +9,7 @@ type HomePageTemplateProps = {
 const HomePageTemplate = ({ homePage }: HomePageTemplateProps) => {
   return (
     <main>
-      <h1>{homePage?.title}</h1>
-      <p>{homePage?.preamble}</p>
+      <PageHeader title={homePage.preamble ?? ''} />
     </main>
   )
 }

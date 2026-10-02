@@ -1,0 +1,27 @@
+@use '@/styles/breakpoints' as bp;
+
+.section {
+  padding-block: 192px;
+
+  @include bp.bp-up('768') {
+    padding-block: 228px;
+  }
+
+  @include bp.bp-up('1024') {
+    padding-block: 248px;
+  }
+}
+
+.item {
+  grid-column: 2 / -1;
+
+  @include bp.bp-up('768') {
+    grid-column-start: 3;
+    max-width: 630px;
+  }
+
+  @include bp.bp-up('1024') {
+    grid-column-start: 4;
+    max-width: 670px;
+  }
+}

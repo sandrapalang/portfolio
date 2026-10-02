@@ -1,0 +1,35 @@
+@use 'sass:map';
+@use '@/styles/breakpoints' as bp;
+@use '@/styles/grid' as g;
+
+// Maps one breakpoint entry from $grid-at to CSS custom property names/values.
+@function _grid-config-to-css-vars($config) {
+  @return (
+    '--grid-columns': #{map.get($config, 'columns')},
+    '--grid-gutter': #{map.get($config, 'gutter')},
+    '--grid-padding-inline': #{map.get($config, 'padding-inline')}
+  );
+}
+
+// Publishes --grid-* CSS variables on :root for each breakpoint in $grid-at.
+@mixin define-grid-css-vars {
+  $default: map.get(g.$grid-at, 'default');
+
+  :root {
+    @each $prop, $value in _grid-config-to-css-vars($default) {
+      #{$prop}: $value;
+    }
+  }
+
+  @each $name, $config in g.$grid-at {
+    @if $name != 'default' {
+      @include bp.bp-up($name) {
+        :root {
+          @each $prop, $value in _grid-config-to-css-vars($config) {
+            #{$prop}: $value;
+          }
+        }
+      }
+    }
+  }
+}

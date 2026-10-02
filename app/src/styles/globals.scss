@@ -14,7 +14,12 @@ body {
 }
 
 header {
+  left: 0;
   padding: 16px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 
   @include bp.bp-up('768') {
     padding: 24px;
@@ -31,6 +36,17 @@ header {
   a {
     color: inherit;
     text-decoration: none;
+  }
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  @include bp.bp-up('1024') {
+    font-size: 72px;
   }
 }
 
