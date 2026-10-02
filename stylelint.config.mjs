@@ -11,6 +11,7 @@ const config = {
         ignoreKeywords: ['BlinkMacSystemFont'],
       },
     ],
+    'scss/at-function-pattern': '^_?[a-z]([a-z0-9-]*[a-z0-9])?$',
   },
 }
 
