@@ -15,6 +15,105 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type ProjectTypeReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'projectType'
+}
+
+export type CategoryReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'category'
+}
+
+export type ContributionReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'contribution'
+}
+
+export type SkillReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'skill'
+}
+
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type WorkItem = {
+  _id: string
+  _type: 'workItem'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  urlPath?: string
+  projectType?: ProjectTypeReference
+  category?: CategoryReference
+  contribution?: Array<
+    {
+      _key: string
+    } & ContributionReference
+  >
+  techStack?: Array<
+    {
+      _key: string
+    } & SkillReference
+  >
+  workCard?: {
+    heading?: string
+    image?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    }
+  }
+  seoSettings?: SeoSettings
+  language?: string
+}
+
+export type SeoSettings = {
+  _type: 'seoSettings'
+  title?: string
+  description?: string
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
 export type Skill = {
   _id: string
   _type: 'skill'
@@ -22,12 +121,6 @@ export type Skill = {
   _updatedAt: string
   _rev: string
   title?: string
-}
-
-export type SeoSettings = {
-  _type: 'seoSettings'
-  title?: string
-  description?: string
 }
 
 export type ProjectType = {
@@ -126,22 +219,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
 export type SanityFileAsset = {
   _id: string
   _type: 'sanity.fileAsset'
@@ -201,15 +278,18 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
 export type AllSanitySchemaTypes =
-  | Skill
+  | ProjectTypeReference
+  | CategoryReference
+  | ContributionReference
+  | SkillReference
+  | SanityImageAssetReference
+  | WorkItem
   | SeoSettings
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Slug
+  | Skill
   | ProjectType
   | HomePage
   | Header
@@ -219,10 +299,7 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | SanityImageMetadata
-  | SanityImageHotspot
-  | SanityImageCrop
   | SanityFileAsset
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint
-  | Slug

@@ -5,5 +5,17 @@
     "onlyInApp": false,
     "includeInSitemap": false,
     "isSearchable": true
+  },
+  {
+    "multitonName": "workItem",
+    "slugs": [
+      { "locale": "sv", "slug": "arbete" },
+      { "locale": "en", "slug": "work" }
+    ],
+    "hasMultitonSlug": true,
+    "isMultitonTranslatable": true,
+    "onlyInApp": false,
+    "includeInSitemap": true,
+    "isSearchable": true
   }
 ]
