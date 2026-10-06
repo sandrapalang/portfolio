@@ -15,10 +15,31 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Skill = {
+  _id: string
+  _type: 'skill'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+}
+
 export type SeoSettings = {
   _type: 'seoSettings'
   title?: string
   description?: string
+}
+
+export type ProjectType = {
+  _id: string
+  _type: 'projectType'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: {
+    en?: string
+    sv?: string
+  }
 }
 
 export type HomePage = {
@@ -41,6 +62,30 @@ export type Header = {
   _updatedAt: string
   _rev: string
   name?: string
+}
+
+export type Contribution = {
+  _id: string
+  _type: 'contribution'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: {
+    en?: string
+    sv?: string
+  }
+}
+
+export type Category = {
+  _id: string
+  _type: 'category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: {
+    en?: string
+    sv?: string
+  }
 }
 
 export type SanityImagePaletteSwatch = {
@@ -163,9 +208,13 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | Skill
   | SeoSettings
+  | ProjectType
   | HomePage
   | Header
+  | Contribution
+  | Category
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
