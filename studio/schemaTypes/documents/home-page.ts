@@ -1,6 +1,8 @@
 import { Home } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
+import UrlPath from '@/components/url-path'
+
 export const icon = Home
 export const title = 'Home'
 export const type = 'homePage'
@@ -26,6 +28,17 @@ export default defineType({
       name: 'preamble',
       title: 'Preamble',
       type: 'text',
+      group: 'content',
+    }),
+    defineField({
+      // Display purpose only, no value is saved to the field for homePage
+      title: 'Page url',
+      name: 'urlPath',
+      type: 'string',
+      readOnly: true,
+      components: {
+        input: UrlPath,
+      },
       group: 'content',
     }),
     defineField({

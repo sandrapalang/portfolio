@@ -29,6 +29,7 @@ export type HomePage = {
   _rev: string
   title?: string
   preamble?: string
+  urlPath?: string
   seoSettings?: SeoSettings
   language?: string
 }
