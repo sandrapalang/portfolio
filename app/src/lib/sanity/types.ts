@@ -15,6 +15,84 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Skill = {
+  _id: string
+  _type: 'skill'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+}
+
+export type SeoSettings = {
+  _type: 'seoSettings'
+  title?: string
+  description?: string
+}
+
+export type HomePage = {
+  _id: string
+  _type: 'homePage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  preamble?: string
+  urlPath?: string
+  seoSettings?: SeoSettings
+  language?: string
+}
+
+export type Header = {
+  _id: string
+  _type: 'header'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+}
+
+export type Contribution = {
+  _id: string
+  _type: 'contribution'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: {
+    en?: string
+    sv?: string
+  }
+}
+
+export type TranslationMetadata = {
+  _id: string
+  _type: 'translation.metadata'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  translations?: InternationalizedArrayReference
+  schemaTypes?: Array<string>
+}
+
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string
+  } & InternationalizedArrayReferenceValue
+>
+
+export type WorkItemReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'workItem'
+}
+
+export type InternationalizedArrayReferenceValue = {
+  _type: 'internationalizedArrayReferenceValue'
+  value?: WorkItemReference
+  language?: string
+}
+
 export type ProjectTypeReference = {
   _ref: string
   _type: 'reference'
@@ -86,12 +164,6 @@ export type WorkItem = {
   language?: string
 }
 
-export type SeoSettings = {
-  _type: 'seoSettings'
-  title?: string
-  description?: string
-}
-
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
   top?: number
@@ -108,19 +180,16 @@ export type SanityImageHotspot = {
   width?: number
 }
 
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
-export type Skill = {
+export type Category = {
   _id: string
-  _type: 'skill'
+  _type: 'category'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title?: {
+    en?: string
+    sv?: string
+  }
 }
 
 export type ProjectType = {
@@ -135,50 +204,10 @@ export type ProjectType = {
   }
 }
 
-export type HomePage = {
-  _id: string
-  _type: 'homePage'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  preamble?: string
-  urlPath?: string
-  seoSettings?: SeoSettings
-  language?: string
-}
-
-export type Header = {
-  _id: string
-  _type: 'header'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-}
-
-export type Contribution = {
-  _id: string
-  _type: 'contribution'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: {
-    en?: string
-    sv?: string
-  }
-}
-
-export type Category = {
-  _id: string
-  _type: 'category'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: {
-    en?: string
-    sv?: string
-  }
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
 }
 
 export type SanityImagePaletteSwatch = {
@@ -279,22 +308,26 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Skill
+  | SeoSettings
+  | HomePage
+  | Header
+  | Contribution
+  | TranslationMetadata
+  | InternationalizedArrayReference
+  | WorkItemReference
+  | InternationalizedArrayReferenceValue
   | ProjectTypeReference
   | CategoryReference
   | ContributionReference
   | SkillReference
   | SanityImageAssetReference
   | WorkItem
-  | SeoSettings
   | SanityImageCrop
   | SanityImageHotspot
-  | Slug
-  | Skill
-  | ProjectType
-  | HomePage
-  | Header
-  | Contribution
   | Category
+  | ProjectType
+  | Slug
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
