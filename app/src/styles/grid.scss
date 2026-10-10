@@ -2,26 +2,22 @@ $grid-at: (
   'default': (
     'columns': 6,
     'gutter': 16px,
-    'padding-inline': 16px,
+    'padding-inline': 0,
   ),
   '768': (
-    'columns': 6,
-    'gutter': 16px,
-    'padding-inline': 24px,
-  ),
-  '1024': (
     'columns': 12,
+    'padding-inline': 16px,
+  ),
+  '1440': (
     'gutter': 24px,
     'padding-inline': 24px,
   ),
-  '1440': (
-    'columns': 12,
+  '1920': (
     'gutter': 32px,
     'padding-inline': 32px,
   ),
-  '1920': (
-    'columns': 12,
-    'gutter': 32px,
+  '2560': (
+    'gutter': 40px,
     'padding-inline': 40px,
   ),
 );

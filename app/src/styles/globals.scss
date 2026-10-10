@@ -1,6 +1,5 @@
 @use './reset';
 @use './tokens';
-@use '@/styles/breakpoints' as bp;
 
 html {
   height: 100%;
@@ -15,23 +14,11 @@ body {
 
 header {
   left: 0;
-  padding: 16px;
+  padding: var(--space-sm);
   position: absolute;
   right: 0;
   top: 0;
   z-index: 1;
-
-  @include bp.bp-up('768') {
-    padding: 24px;
-  }
-
-  @include bp.bp-up('1440') {
-    padding: 32px;
-  }
-
-  @include bp.bp-up('1920') {
-    padding: 40px;
-  }
 
   a {
     color: inherit;
@@ -40,21 +27,29 @@ header {
 }
 
 h1 {
-  font-size: 64px;
-  font-weight: 450;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-size: var(--text-h1-font-size);
+  font-weight: var(--text-h1-font-weight);
+  letter-spacing: var(--text-h1-letter-spacing);
+  line-height: var(--text-h1-line-height);
+}
 
-  @include bp.bp-up('1024') {
-    font-size: 72px;
-  }
+h2 {
+  font-size: var(--text-h2-font-size);
+  font-weight: var(--text-h2-font-weight);
+  letter-spacing: var(--text-h2-letter-spacing);
+  line-height: var(--text-h2-line-height);
+}
+
+h3 {
+  font-size: var(--text-h3-font-size);
+  font-weight: var(--text-h3-font-weight);
+  letter-spacing: var(--text-h3-letter-spacing);
+  line-height: var(--text-h3-line-height);
 }
 
 h5 {
-  font-size: 20px;
-  font-weight: 400;
-
-  &.spacing {
-    letter-spacing: 0.025em;
-  }
+  font-size: var(--text-h5-font-size);
+  font-weight: var(--text-h5-font-weight);
+  letter-spacing: var(--text-h5-letter-spacing);
+  line-height: var(--text-h5-line-height);
 }

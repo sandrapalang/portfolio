@@ -1,0 +1,33 @@
+$typography-at: (
+  'default': (
+    'h1': (
+      'font-size': 64px,
+      'line-height': 72px,
+      'font-weight': 450,
+      'letter-spacing': -0.02em,
+    ),
+    'h2': (
+      'font-size': 40px,
+      'line-height': 48px,
+      'font-weight': 375,
+      'letter-spacing': 0.025em,
+    ),
+    'h3': (
+      'font-size': 32px,
+      'line-height': 40px,
+      'font-weight': 450,
+    ),
+    'h5': (
+      'font-size': 20px,
+      'line-height': 20px,
+      'font-weight': 450,
+      'letter-spacing': 0.025em,
+    ),
+  ),
+  '1440': (
+    'h5': (
+      'font-size': 24px,
+      'line-height': 24px,
+    ),
+  ),
+);

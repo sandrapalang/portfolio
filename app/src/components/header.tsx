@@ -6,7 +6,7 @@ const Header = async () => {
 
   return (
     <header>
-      <h5 className="spacing">
+      <h5>
         <Link href="/">{header?.name}</Link>
       </h5>
     </header>

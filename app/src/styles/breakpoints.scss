@@ -6,6 +6,7 @@ $breakpoints: (
   '1024': 1024px,
   '1440': 1440px,
   '1920': 1920px,
+  '2560': 2560px,
 );
 
 @function breakpoint($name) {

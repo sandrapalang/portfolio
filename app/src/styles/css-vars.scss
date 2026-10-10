@@ -1,0 +1,113 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '@/styles/breakpoints' as bp;
+@use '@/styles/grid' as g;
+@use '@/styles/space' as s;
+@use '@/styles/typography' as t;
+
+// ---------------------------------------------------------------------------
+// Shared publish helper — used by all responsive token families
+// (grid, space, typography): maps $*-at → --* on :root per breakpoint.
+// ---------------------------------------------------------------------------
+
+@mixin _publish-at-breakpoints($at-map, $to-vars) {
+  $default: map.get($at-map, 'default');
+
+  :root {
+    @each $prop, $value in meta.call($to-vars, $default) {
+      #{$prop}: $value;
+    }
+  }
+
+  @each $name, $config in $at-map {
+    @if $name != 'default' and $config != null and $config != () {
+      @include bp.bp-up($name) {
+        :root {
+          @each $prop, $value in meta.call($to-vars, $config) {
+            #{$prop}: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Grid
+// ---------------------------------------------------------------------------
+
+@function _grid-config-to-css-vars($config) {
+  $vars: ();
+
+  @each $key, $value in $config {
+    $vars: map.merge(
+      $vars,
+      (
+        '--grid-#{$key}': #{$value},
+      )
+    );
+  }
+
+  @return $vars;
+}
+
+@mixin define-grid-css-vars {
+  @include _publish-at-breakpoints(
+    g.$grid-at,
+    meta.get-function('_grid-config-to-css-vars')
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Space
+// ---------------------------------------------------------------------------
+
+@function _space-config-to-css-vars($config) {
+  $vars: ();
+
+  @each $key, $value in $config {
+    $vars: map.merge(
+      $vars,
+      (
+        '--space-#{$key}': #{$value},
+      )
+    );
+  }
+
+  @return $vars;
+}
+
+@mixin define-space-css-vars {
+  @include _publish-at-breakpoints(
+    s.$space-at,
+    meta.get-function('_space-config-to-css-vars')
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------
+
+@function _typography-config-to-css-vars($config) {
+  $vars: ();
+
+  @each $role, $props in $config {
+    @each $prop, $value in $props {
+      $vars: map.merge(
+        $vars,
+        (
+          '--text-#{$role}-#{$prop}': #{$value},
+        )
+      );
+    }
+  }
+
+  @return $vars;
+}
+
+@mixin define-typography-css-vars {
+  @include _publish-at-breakpoints(
+    t.$typography-at,
+    meta.get-function('_typography-config-to-css-vars')
+  );
+}

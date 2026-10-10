@@ -1,5 +1,7 @@
-@use '@/styles/spacing' as s;
-@include s.define-grid-css-vars;
+@use '@/styles/css-vars' as cv;
+@include cv.define-grid-css-vars;
+@include cv.define-space-css-vars;
+@include cv.define-typography-css-vars;
 
 :root {
   --font-family: -apple-system, BlinkMacSystemFont, sans-serif;

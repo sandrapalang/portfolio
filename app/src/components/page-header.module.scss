@@ -1,15 +1,7 @@
 @use '@/styles/breakpoints' as bp;
 
 .section {
-  padding-block: 192px;
-
-  @include bp.bp-up('768') {
-    padding-block: 228px;
-  }
-
-  @include bp.bp-up('1024') {
-    padding-block: 248px;
-  }
+  padding-block: var(--space-section);
 }
 
 .item {
