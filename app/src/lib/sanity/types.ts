@@ -21,7 +21,7 @@ export type Skill = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
 }
 
 export type SeoSettings = {
@@ -30,15 +30,30 @@ export type SeoSettings = {
   description?: string
 }
 
+export type WorkItemReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'workItem'
+}
+
 export type HomePage = {
   _id: string
   _type: 'homePage'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
   preamble?: string
   urlPath?: string
+  workSection?: {
+    title?: string
+    workItems?: Array<
+      {
+        _key: string
+      } & WorkItemReference
+    >
+  }
   seoSettings?: SeoSettings
   language?: string
 }
@@ -49,7 +64,7 @@ export type Header = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name?: string
+  name: string
 }
 
 export type Contribution = {
@@ -58,7 +73,7 @@ export type Contribution = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: {
+  title: {
     en?: string
     sv?: string
   }
@@ -80,17 +95,10 @@ export type InternationalizedArrayReference = Array<
   } & InternationalizedArrayReferenceValue
 >
 
-export type WorkItemReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'workItem'
-}
-
 export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue'
   value?: WorkItemReference
-  language?: string
+  language: string
 }
 
 export type ProjectTypeReference = {
@@ -134,11 +142,11 @@ export type WorkItem = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   urlPath?: string
-  projectType?: ProjectTypeReference
-  category?: CategoryReference
+  projectType: ProjectTypeReference
+  category: CategoryReference
   contribution?: Array<
     {
       _key: string
@@ -161,23 +169,23 @@ export type WorkItem = {
     }
   }
   seoSettings?: SeoSettings
-  language?: string
+  language: string
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type Category = {
@@ -186,7 +194,7 @@ export type Category = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: {
+  title: {
     en?: string
     sv?: string
   }
@@ -198,7 +206,7 @@ export type ProjectType = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: {
+  title: {
     en?: string
     sv?: string
   }
@@ -206,7 +214,7 @@ export type ProjectType = {
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 
@@ -231,9 +239,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageMetadata = {
@@ -259,14 +267,14 @@ export type SanityFileAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   source?: SanityAssetSourceData
 }
 
@@ -288,14 +296,14 @@ export type SanityImageAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   metadata?: SanityImageMetadata
   source?: SanityAssetSourceData
 }
@@ -310,12 +318,12 @@ export type Geopoint = {
 export type AllSanitySchemaTypes =
   | Skill
   | SeoSettings
+  | WorkItemReference
   | HomePage
   | Header
   | Contribution
   | TranslationMetadata
   | InternationalizedArrayReference
-  | WorkItemReference
   | InternationalizedArrayReferenceValue
   | ProjectTypeReference
   | CategoryReference

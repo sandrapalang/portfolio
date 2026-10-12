@@ -42,6 +42,26 @@ export default defineType({
       group: 'content',
     }),
     defineField({
+      name: 'workSection',
+      title: 'Work section',
+      type: 'object',
+      group: 'content',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'workItems',
+          title: 'Work items',
+          type: 'array',
+          of: [{ type: 'reference', to: [{ type: 'workItem' }] }],
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'seoSettings',
       title: 'SEO settings',
       type: 'seoSettings',
