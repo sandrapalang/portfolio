@@ -21,6 +21,16 @@ type WorkSectionProps = {
   data: WorkSectionData
 }
 
+function isPublished(publishDate?: string | null): boolean {
+  if (!publishDate) return true
+
+  const today = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Stockholm',
+  }).format(new Date())
+
+  return today >= publishDate
+}
+
 const WorkSection = ({ data }: WorkSectionProps) => {
   if (!data.title) return null
 
@@ -37,6 +47,7 @@ const WorkSection = ({ data }: WorkSectionProps) => {
               src: item.workCard?.image?.src ?? '',
               alt: item.workCard?.image?.alt ?? '',
             }}
+            isPublished={isPublished(item.workCard?.publishDate)}
             key={item.slug?.current}
             projectType={item.projectType ?? ''}
             slug={item.slug?.current ?? ''}

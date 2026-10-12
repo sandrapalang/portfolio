@@ -36,6 +36,11 @@
 .image {
   background-color: var(--secondary-bg);
   object-fit: cover;
+
+  &.imageUnpublished {
+    filter: blur(12px);
+    transform: scale(1.05); // avoid white edges around the blur
+  }
 }
 
 .pills {

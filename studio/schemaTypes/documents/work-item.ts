@@ -99,6 +99,14 @@ export default defineType({
           options: { hotspot: true },
           fields: [{ name: 'alt', type: 'string', title: 'Alternative text' }],
         }),
+        defineField({
+          name: 'publishDate',
+          title: 'Publish date',
+          type: 'date',
+          description:
+            'From this date the card is published on the homepage. Leave empty to publish immediately.',
+          options: { dateFormat: 'YYYY-MM-DD' },
+        }),
       ],
     }),
     defineField({

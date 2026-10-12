@@ -167,6 +167,7 @@ export type WorkItem = {
       alt?: string
       _type: 'image'
     }
+    publishDate?: string
   }
   seoSettings?: SeoSettings
   language: string
