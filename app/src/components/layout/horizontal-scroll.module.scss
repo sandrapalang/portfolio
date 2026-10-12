@@ -1,0 +1,12 @@
+.track {
+  column-gap: var(--grid-gutter);
+  display: grid;
+  grid-auto-columns: calc(
+    (100% - (var(--grid-columns) - 1) * var(--grid-gutter)) /
+      var(--grid-columns)
+  );
+  grid-auto-flow: column;
+  overflow: auto hidden;
+  padding-inline: var(--grid-padding-inline);
+  width: 100%;
+}

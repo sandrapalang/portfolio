@@ -1,0 +1,13 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+
+  .title {
+    line-height: calc(var(--text-h2-line-height) - 8px);
+    padding-inline: var(--space-sm);
+  }
+}
