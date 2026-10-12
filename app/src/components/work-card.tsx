@@ -16,6 +16,7 @@ type WorkCardProps = {
   image: WorkCardImage
   heading: string | null
   slug: string | null
+  techStack: string[]
   isPublished: boolean
 }
 
@@ -25,8 +26,11 @@ const WorkCard = ({
   slug,
   category,
   projectType,
+  techStack,
   isPublished,
 }: WorkCardProps) => {
+  const hasTechStack = techStack?.length > 0
+
   const content = (
     <div className={styles.imageWrapper}>
       {image.src && (
@@ -44,6 +48,14 @@ const WorkCard = ({
           {projectType && <Pill label={projectType} />}
           {category && <Pill label={category} />}
         </div>
+
+        {hasTechStack && (
+          <div className={styles.pillsHover}>
+            {techStack.map((skill) => (
+              <Pill key={skill} label={skill} />
+            ))}
+          </div>
+        )}
       </div>
 
       <h3 className={styles.heading}>
