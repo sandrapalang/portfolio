@@ -40,7 +40,7 @@ const WorkSection = ({ data }: WorkSectionProps) => {
   return (
     <SectionWrapper title={data.title}>
       <HorizontalScroll>
-        {items.map((item) => (
+        {items.map((item, index) => (
           <WorkCard
             category={item.category ?? ''}
             heading={item.workCard?.heading ?? ''}
@@ -50,6 +50,7 @@ const WorkSection = ({ data }: WorkSectionProps) => {
             }}
             isPublished={isPublished(item.workCard?.publishDate)}
             key={item.slug?.current}
+            priority={index < 3}
             projectType={item.projectType ?? ''}
             slug={item.slug?.current ?? ''}
             techStack={item.techStack ?? []}

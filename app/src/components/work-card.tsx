@@ -18,6 +18,7 @@ type WorkCardProps = {
   slug: string | null
   techStack: string[]
   isPublished: boolean
+  priority?: boolean
 }
 
 const WorkCard = ({
@@ -28,6 +29,7 @@ const WorkCard = ({
   projectType,
   techStack,
   isPublished,
+  priority = false,
 }: WorkCardProps) => {
   const hasTechStack = techStack?.length > 0
 
@@ -38,6 +40,7 @@ const WorkCard = ({
           alt={image.alt ?? ''}
           className={`${styles.image} ${!isPublished ? styles.imageUnpublished : ''}`}
           fill
+          priority={priority}
           sizes="(min-width: 768px) 67vw, 100vw"
           src={image.src}
         />
