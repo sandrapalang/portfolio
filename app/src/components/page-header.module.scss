@@ -1,7 +1,10 @@
 @use '@/styles/breakpoints' as bp;
 
 .section {
-  padding-block: var(--space-section);
+  padding-bottom: calc(
+    var(--space-section) - var(--space-sm) - var(--text-h2-font-size)
+  );
+  padding-top: var(--space-section);
 }
 
 .item {
@@ -15,5 +18,13 @@
   @include bp.bp-up('1024') {
     grid-column-start: 4;
     max-width: 670px;
+  }
+
+  @include bp.bp-up('1440') {
+    max-width: 760px;
+  }
+
+  @include bp.bp-up('1920') {
+    max-width: 800px;
   }
 }

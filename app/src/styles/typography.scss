@@ -25,9 +25,19 @@ $typography-at: (
     ),
   ),
   '1440': (
+    'h1': (
+      'font-size': 80px,
+      'line-height': 88px,
+    ),
     'h5': (
       'font-size': 24px,
       'line-height': 24px,
+    ),
+  ),
+  '1920': (
+    'h1': (
+      'font-size': 88px,
+      'line-height': 96px,
     ),
   ),
 );
