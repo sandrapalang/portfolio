@@ -1,12 +1,18 @@
-.track {
+.wrapper {
+  container-type: inline-size;
+  min-width: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.strip {
   column-gap: var(--grid-gutter);
   display: grid;
   grid-auto-columns: calc(
-    (100% - (var(--grid-columns) - 1) * var(--grid-gutter)) /
+    (100cqw - (var(--grid-columns) - 1) * var(--grid-gutter)) /
       var(--grid-columns)
   );
   grid-auto-flow: column;
-  overflow: auto hidden;
   padding-inline: var(--grid-padding-inline);
-  width: 100%;
+  width: max-content;
 }

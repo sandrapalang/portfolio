@@ -21,6 +21,13 @@ header {
   z-index: 1;
 }
 
+main {
+  max-width: 100%;
+  min-width: 0;
+  overflow-y: hidden;
+  padding-bottom: var(--space-section);
+}
+
 h1 {
   font-size: var(--text-h1-font-size);
   font-weight: var(--text-h1-font-weight);
