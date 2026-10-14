@@ -1,8 +1,8 @@
 import { StructureBuilder, StructureResolverContext } from 'sanity/structure'
 
-import headerStructure from '@/lib/structure/structures/header'
-import homeStructure from '@/lib/structure/structures/home'
-import workStructure from '@/lib/structure/structures/work'
+import headerStructure from '@/lib/structure/substructures/header'
+import homeStructure from '@/lib/structure/substructures/home'
+import workStructure from '@/lib/structure/substructures/work'
 
 const structure = (S: StructureBuilder, context: StructureResolverContext) =>
   S.list()
