@@ -4,6 +4,7 @@ import header from './documents/header'
 import homePage from './documents/home-page'
 import projectType from './documents/project-type'
 import skill from './documents/skill'
+import stringTranslation from './documents/string-translation'
 import workItem from './documents/work-item'
 import seoSettings from './objects/seo-settings'
 
@@ -15,5 +16,6 @@ export const schemaTypes = [
   projectType,
   seoSettings,
   skill,
+  stringTranslation,
   workItem,
 ]

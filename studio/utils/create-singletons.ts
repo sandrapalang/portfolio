@@ -1,9 +1,17 @@
 import { getCliClient } from 'sanity/cli'
 
-const singletons = [
+type Singleton = {
+  _type: string
+  _id: string
+  language?: string
+}
+
+const singletons: Singleton[] = [
   { _type: 'homePage', _id: 'homePage-en', language: 'en' },
   { _type: 'homePage', _id: 'homePage-sv', language: 'sv' },
   { _type: 'header', _id: 'header' },
+  { _type: 'stringTranslation', _id: 'stringTranslation-en', language: 'en' },
+  { _type: 'stringTranslation', _id: 'stringTranslation-sv', language: 'sv' },
 ]
 
 const client = getCliClient()

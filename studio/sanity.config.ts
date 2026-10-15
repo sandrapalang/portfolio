@@ -9,7 +9,7 @@ import structure from '@/lib/structure'
 import { schemaTypes } from './schemaTypes'
 
 const multitonTypes = new Set(['workItem'])
-const singletonTypes = new Set(['header', 'homePage'])
+const singletonTypes = new Set(['header', 'homePage', 'stringTranslation'])
 const singletonActions = new Set(['publish', 'unpublish', 'discardChanges'])
 
 export default defineConfig({

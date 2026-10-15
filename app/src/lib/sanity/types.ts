@@ -15,6 +15,15 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type StringTranslation = {
+  _id: string
+  _type: 'stringTranslation'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  language?: string
+}
+
 export type Skill = {
   _id: string
   _type: 'skill'
@@ -317,6 +326,7 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | StringTranslation
   | Skill
   | SeoSettings
   | WorkItemReference
