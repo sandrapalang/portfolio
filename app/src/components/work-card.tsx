@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 import Pill from '@/components/pill'
 import { Link } from '@/lib/i18n/navigation'
@@ -31,6 +32,8 @@ const WorkCard = ({
   isPublished,
   priority = false,
 }: WorkCardProps) => {
+  const t = useTranslations('work')
+
   const hasTechStack = techStack?.length > 0
 
   const content = (
@@ -62,8 +65,7 @@ const WorkCard = ({
       </div>
 
       <h3 className={styles.heading}>
-        {/* TODO: use string translations instead of hardcoding */}
-        {isPublished ? heading : 'Coming soon'}
+        {isPublished ? heading : t('comingSoon')}
       </h3>
     </div>
   )

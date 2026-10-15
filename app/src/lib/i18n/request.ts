@@ -3,6 +3,8 @@ import * as rootParams from 'next/root-params'
 import { hasLocale } from 'next-intl'
 import { getRequestConfig } from 'next-intl/server'
 
+import { getStringTranslation } from '@/lib/sanity/queries/get-string-translation'
+
 import { routing } from './routing'
 
 export default getRequestConfig(async ({ locale }) => {
@@ -20,8 +22,6 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     locale,
-    // Platshållare tills Sanity-dokumentet `stringTranslation`
-    // och en fetchStringTranslations(locale)-query läggs till
-    messages: {},
+    messages: await getStringTranslation(locale),
   }
 })
