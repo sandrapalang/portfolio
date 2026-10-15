@@ -7,7 +7,13 @@ type TranslationGroup = {
   strings: { name: string; title: string }[]
 }
 
-const translationGroups: TranslationGroup[] = []
+const translationGroups: TranslationGroup[] = [
+  {
+    groupName: 'work',
+    groupTitle: 'Work',
+    strings: [{ name: 'comingSoon', title: 'Work card — Coming soon label' }],
+  },
+]
 
 const fields: FieldDefinition[] = translationGroups.map(
   ({ groupName, groupTitle, strings }) =>

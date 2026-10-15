@@ -22,6 +22,9 @@ export type StringTranslation = {
   _updatedAt: string
   _rev: string
   language?: string
+  work?: {
+    comingSoon?: string
+  }
 }
 
 export type Skill = {
