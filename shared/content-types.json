@@ -8,6 +8,7 @@
   },
   {
     "multitonName": "workItem",
+    "appDirectory": "work",
     "slugs": [
       { "locale": "sv", "slug": "arbete" },
       { "locale": "en", "slug": "work" }

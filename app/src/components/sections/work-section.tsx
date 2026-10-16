@@ -12,11 +12,11 @@ type WorkSectionData = {
     projectType?: string
     slug?: { current: string }
     techStack?: string[]
+    urlPath?: string
     workCard?: {
       heading?: string
       image?: WorkCardImage
       publishDate?: string
-      techStack?: string[]
     }
   }[]
   title?: string
@@ -59,8 +59,8 @@ const WorkSection = ({ data }: WorkSectionProps) => {
               key={item.slug?.current}
               priority={index < 3}
               projectType={item.projectType ?? ''}
-              slug={item.slug?.current ?? ''}
               techStack={item.techStack ?? []}
+              urlPath={item.urlPath ?? null}
             />
           ))}
         </HorizontalScroll>

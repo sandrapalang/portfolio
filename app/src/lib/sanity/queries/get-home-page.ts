@@ -10,6 +10,7 @@ export const getHomePage = (locale: string) =>
         workItems[]->{
           _id,
           slug,
+          urlPath,
           "category": category->title[$locale],
           "projectType": projectType->title[$locale],
           "techStack": techStack[]->title,

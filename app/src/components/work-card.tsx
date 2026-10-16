@@ -1,8 +1,9 @@
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 
 import Pill from '@/components/pill'
-import { Link } from '@/lib/i18n/navigation'
+import { routing } from '@/lib/i18n/routing'
 
 import styles from '@/components/work-card.module.scss'
 
@@ -16,7 +17,7 @@ type WorkCardProps = {
   projectType: string | null
   image: WorkCardImage
   heading: string | null
-  slug: string | null
+  urlPath: string | null
   techStack: string[]
   isPublished: boolean
   priority?: boolean
@@ -25,16 +26,21 @@ type WorkCardProps = {
 const WorkCard = ({
   image,
   heading,
-  slug,
+  urlPath,
   category,
   projectType,
   techStack,
   isPublished,
   priority = false,
 }: WorkCardProps) => {
+  const locale = useLocale()
   const t = useTranslations('work')
 
   const hasTechStack = techStack?.length > 0
+  const href =
+    locale === routing.defaultLocale
+      ? (urlPath ?? '/')
+      : `/${locale}${urlPath ?? ''}`
 
   const content = (
     <div className={styles.imageWrapper}>
@@ -73,7 +79,7 @@ const WorkCard = ({
   return (
     <div className={styles.card}>
       {isPublished ? (
-        <Link className={styles.link} href={`/work/${slug ?? ''}`}>
+        <Link className={styles.link} href={href}>
           {content}
         </Link>
       ) : (
