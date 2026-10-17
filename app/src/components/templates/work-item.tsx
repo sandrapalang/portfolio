@@ -1,3 +1,5 @@
+import PageHeader from '@/components/page-header'
+
 type WorkItemTemplateProps = {
   workItem: {
     title?: string
@@ -7,7 +9,7 @@ type WorkItemTemplateProps = {
 const WorkItemTemplate = ({ workItem }: WorkItemTemplateProps) => {
   return (
     <main>
-      <h1>{workItem?.title}</h1>
+      <PageHeader title={workItem.title} variant="workItem" />
     </main>
   )
 }

@@ -1,10 +1,23 @@
 @use '@/styles/breakpoints' as bp;
 
+.section,
+.sectionWorkItem {
+  padding-top: var(--space-section);
+}
+
 .section {
   padding-bottom: calc(
     var(--space-section) - var(--space-sm) - var(--text-h2-font-size)
   );
-  padding-top: var(--space-section);
+}
+
+.sectionWorkItem {
+  padding-inline: var(--space-lg);
+  padding-bottom: var(--space-section); // sätt det du vill för work item
+
+  @include bp.bp-up('768') {
+    padding-inline: var(--grid-padding);
+  }
 }
 
 .item {
@@ -26,5 +39,18 @@
 
   @include bp.bp-up('1920') {
     max-width: 800px;
+  }
+}
+
+.itemWorkItem {
+  grid-column: 1 / -1;
+
+  // End on the second-to-last column (-2), not the last (-1).
+  @include bp.bp-up('768') {
+    grid-column: 2 / -2;
+  }
+
+  @include bp.bp-up('1920') {
+    grid-column: 3 / -3;
   }
 }
