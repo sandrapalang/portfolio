@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 
 import WorkItemTemplate from '@/components/templates/work-item'
 import { getWorkItem } from '@/lib/sanity/queries/get-work-item'
+import { getWorkNavigation } from '@/lib/sanity/queries/get-work-navigation'
+import { isPublished } from '@/lib/utils'
 
 export const generateMetadata = async ({
   params,
@@ -24,15 +26,29 @@ const WorkItemPage = async ({
   params: Promise<{ locale: string; slug: string }>
 }) => {
   const { locale, slug } = await params
-  const workItem = await getWorkItem(locale, slug)
+  const [workItem, workItems] = await Promise.all([
+    getWorkItem(locale, slug),
+    getWorkNavigation(locale),
+  ])
 
   if (!workItem) {
     notFound()
   }
 
+  const published = workItems.filter((item) => isPublished(item.publishDate))
+  const index = published.findIndex((item) => item.slug === slug)
+  const count = published.length
+
+  const neighbor = (offset: number) =>
+    index >= 0 && count >= 2
+      ? published[(index + offset + count) % count]
+      : null
+
   return (
     <div>
-      <WorkItemTemplate workItem={workItem} />
+      <WorkItemTemplate
+        workItem={{ ...workItem, next: neighbor(1), previous: neighbor(-1) }}
+      />
     </div>
   )
 }

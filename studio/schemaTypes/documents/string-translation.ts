@@ -11,7 +11,14 @@ const translationGroups: TranslationGroup[] = [
   {
     groupName: 'work',
     groupTitle: 'Work',
-    strings: [{ name: 'comingSoon', title: 'Work card — Coming soon label' }],
+    strings: [
+      { name: 'comingSoon', title: 'Work card — Coming soon label' },
+      { name: 'nextWork', title: 'Work item page — Next work link label' },
+      {
+        name: 'previousWork',
+        title: 'Work item page — Previous work link label',
+      },
+    ],
   },
 ]
 

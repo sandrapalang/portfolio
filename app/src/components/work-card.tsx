@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
 import Pill from '@/components/pill'
-import { routing } from '@/lib/i18n/routing'
+import { localizeUrlPath } from '@/lib/utils'
 
 import styles from '@/components/work-card.module.scss'
 
@@ -37,10 +37,7 @@ const WorkCard = ({
   const t = useTranslations('work')
 
   const hasTechStack = techStack?.length > 0
-  const href =
-    locale === routing.defaultLocale
-      ? (urlPath ?? '/')
-      : `/${locale}${urlPath ?? ''}`
+  const href = localizeUrlPath(urlPath, locale)
 
   const content = (
     <div className={styles.imageWrapper}>

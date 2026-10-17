@@ -24,6 +24,8 @@ export type StringTranslation = {
   language?: string
   work?: {
     comingSoon?: string
+    nextWork?: string
+    previousWork?: string
   }
 }
 

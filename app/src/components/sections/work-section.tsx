@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import HorizontalScroll from '@/components/layout/horizontal-scroll'
 import SectionWrapper from '@/components/layout/section-wrapper'
 import WorkCard, { type WorkCardImage } from '@/components/work-card'
+import { isPublished } from '@/lib/utils'
 
 type WorkSectionData = {
   workItems?: {
@@ -24,16 +25,6 @@ type WorkSectionData = {
 
 type WorkSectionProps = {
   data: WorkSectionData
-}
-
-function isPublished(publishDate?: string | null): boolean {
-  if (!publishDate) return true
-
-  const today = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/Stockholm',
-  }).format(new Date())
-
-  return today >= publishDate
 }
 
 const WorkSection = ({ data }: WorkSectionProps) => {

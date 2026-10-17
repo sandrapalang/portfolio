@@ -1,0 +1,35 @@
+@use '@/styles/breakpoints' as bp;
+
+.section {
+  padding-inline: var(--space-lg);
+
+  @include bp.bp-up('768') {
+    padding-inline: var(--grid-padding);
+  }
+}
+
+// Match PageHeader .itemWorkItem column span.
+.nav {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+
+  // End on the second-to-last column (-2), not the last (-1).
+  @include bp.bp-up('768') {
+    grid-column: 2 / -2;
+  }
+
+  @include bp.bp-up('1920') {
+    grid-column: 3 / -3;
+  }
+}
+
+.previous {
+  margin-inline-end: auto;
+  text-align: start;
+}
+
+.next {
+  margin-inline-start: auto;
+  text-align: end;
+}
