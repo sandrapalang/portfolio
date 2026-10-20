@@ -1,3 +1,4 @@
+import workMeta from './blocks/work-meta'
 import category from './documents/category'
 import contribution from './documents/contribution'
 import header from './documents/header'
@@ -20,4 +21,5 @@ export const schemaTypes = [
   skill,
   stringTranslation,
   workItem,
+  workMeta,
 ]

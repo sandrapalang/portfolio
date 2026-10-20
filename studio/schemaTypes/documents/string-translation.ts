@@ -18,6 +18,9 @@ const translationGroups: TranslationGroup[] = [
         name: 'previousWork',
         title: 'Work item page — Previous work link label',
       },
+      { name: 'category', title: 'Work meta block — Category label' },
+      { name: 'contribution', title: 'Work meta block — Contribution label' },
+      { name: 'typeOfWork', title: 'Work meta block — Type of work label' },
     ],
   },
 ]

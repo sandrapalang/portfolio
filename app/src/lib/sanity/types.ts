@@ -15,6 +15,45 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Settings = {
+  paddingTop?: 'none' | 'sm' | 'md' | 'lg'
+  paddingBottom?: 'none' | 'sm' | 'md' | 'lg'
+  hideBlockFromPage?: boolean
+}
+
+export type ProjectTypeReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'projectType'
+}
+
+export type CategoryReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'category'
+}
+
+export type ContributionReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'contribution'
+}
+
+export type WorkMeta = {
+  _type: 'workMeta'
+  projectType?: ProjectTypeReference
+  category?: CategoryReference
+  contribution?: Array<
+    {
+      _key: string
+    } & ContributionReference
+  >
+  settings?: Settings
+}
+
 export type StringTranslation = {
   _id: string
   _type: 'stringTranslation'
@@ -26,6 +65,9 @@ export type StringTranslation = {
     comingSoon?: string
     nextWork?: string
     previousWork?: string
+    category?: string
+    contribution?: string
+    typeOfWork?: string
   }
 }
 
@@ -44,7 +86,11 @@ export type SeoSettings = {
   description?: string
 }
 
-export type PageBuilder = null
+export type PageBuilder = Array<
+  {
+    _key: string
+  } & WorkMeta
+>
 
 export type WorkItemReference = {
   _ref: string
@@ -115,27 +161,6 @@ export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue'
   value?: WorkItemReference
   language: string
-}
-
-export type ProjectTypeReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'projectType'
-}
-
-export type CategoryReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'category'
-}
-
-export type ContributionReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'contribution'
 }
 
 export type SkillReference = {
@@ -334,6 +359,11 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Settings
+  | ProjectTypeReference
+  | CategoryReference
+  | ContributionReference
+  | WorkMeta
   | StringTranslation
   | Skill
   | SeoSettings
@@ -345,9 +375,6 @@ export type AllSanitySchemaTypes =
   | TranslationMetadata
   | InternationalizedArrayReference
   | InternationalizedArrayReferenceValue
-  | ProjectTypeReference
-  | CategoryReference
-  | ContributionReference
   | SkillReference
   | SanityImageAssetReference
   | WorkItem
@@ -413,6 +440,9 @@ export type StringTranslationQueryResult = {
     comingSoon?: string
     nextWork?: string
     previousWork?: string
+    category?: string
+    contribution?: string
+    typeOfWork?: string
   } | null
 } | null
 
@@ -422,7 +452,12 @@ export type StringTranslationQueryResult = {
 export type WorkItemQueryResult = {
   title: string
   seoSettings: SeoSettings | null
-  pageBuilder: null
+  pageBuilder: Array<{
+    _type: 'workMeta'
+    _key: string
+    paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
+    paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
+  }> | null
   translations: Array<{
     language: string
     slug: string
