@@ -1,5 +1,7 @@
 import { type ComponentType } from 'react'
 
+import WorkMeta from '@/components/blocks/work-meta'
+
 type PageBuilderBlock = { _key: string; _type: string } & Record<
   string,
   unknown
@@ -9,7 +11,9 @@ type PageBuilderProps = {
   blocks?: PageBuilderBlock[] | null
 }
 
-const blockComponents: Record<string, ComponentType<PageBuilderBlock>> = {}
+const blockComponents: Record<string, ComponentType<PageBuilderBlock>> = {
+  workMeta: WorkMeta as ComponentType<PageBuilderBlock>,
+}
 
 const PageBuilder = ({ blocks }: PageBuilderProps) => {
   if (!blocks?.length) return null

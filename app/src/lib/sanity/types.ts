@@ -77,7 +77,7 @@ export type Skill = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
 }
 
 export type SeoSettings = {
@@ -105,7 +105,7 @@ export type HomePage = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   preamble?: string
   urlPath?: string
   workSection?: {
@@ -126,7 +126,7 @@ export type Header = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
+  name?: string
 }
 
 export type Contribution = {
@@ -135,7 +135,7 @@ export type Contribution = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: {
+  title?: {
     en?: string
     sv?: string
   }
@@ -160,7 +160,7 @@ export type InternationalizedArrayReference = Array<
 export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue'
   value?: WorkItemReference
-  language: string
+  language?: string
 }
 
 export type SkillReference = {
@@ -183,11 +183,11 @@ export type WorkItem = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   urlPath?: string
-  projectType: ProjectTypeReference
-  category: CategoryReference
+  projectType?: ProjectTypeReference
+  category?: CategoryReference
   contribution?: Array<
     {
       _key: string
@@ -212,23 +212,23 @@ export type WorkItem = {
   }
   pageBuilder?: PageBuilder
   seoSettings?: SeoSettings
-  language: string
+  language?: string
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
+  x?: number
+  y?: number
+  height?: number
+  width?: number
 }
 
 export type Category = {
@@ -237,7 +237,7 @@ export type Category = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: {
+  title?: {
     en?: string
     sv?: string
   }
@@ -249,7 +249,7 @@ export type ProjectType = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: {
+  title?: {
     en?: string
     sv?: string
   }
@@ -257,7 +257,7 @@ export type ProjectType = {
 
 export type Slug = {
   _type: 'slug'
-  current: string
+  current?: string
   source?: string
 }
 
@@ -282,9 +282,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height: number
-  width: number
-  aspectRatio: number
+  height?: number
+  width?: number
+  aspectRatio?: number
 }
 
 export type SanityImageMetadata = {
@@ -310,14 +310,14 @@ export type SanityFileAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash: string
-  extension: string
-  mimeType: string
-  size: number
-  assetId: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
   uploadId?: string
-  path: string
-  url: string
+  path?: string
+  url?: string
   source?: SanityAssetSourceData
 }
 
@@ -339,14 +339,14 @@ export type SanityImageAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash: string
-  extension: string
-  mimeType: string
-  size: number
-  assetId: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
   uploadId?: string
-  path: string
-  url: string
+  path?: string
+  url?: string
   metadata?: SanityImageMetadata
   source?: SanityAssetSourceData
 }
@@ -396,7 +396,7 @@ export type AllSanitySchemaTypes =
 // Variable: headerQuery
 // Query: *[_type == "header"][0]{ name }
 export type HeaderQueryResult = {
-  name: string
+  name: string | null
 } | null
 
 // Source: ../app/src/lib/sanity/queries/get-home-page.ts
@@ -409,17 +409,17 @@ export type HomePageQueryResult = {
     title: string | null
     workItems: Array<{
       _id: string
-      slug: Slug
+      slug: Slug | null
       urlPath: string | null
       category: Array<{
         en?: string
         sv?: string
-      }>
+      }> | null
       projectType: Array<{
         en?: string
         sv?: string
-      }>
-      techStack: Array<string> | null
+      }> | null
+      techStack: Array<string | null> | null
       workCard: {
         heading: string | null
         publishDate: string | null
@@ -448,19 +448,31 @@ export type StringTranslationQueryResult = {
 
 // Source: ../app/src/lib/sanity/queries/get-work-item.ts
 // Variable: workItemQuery
-// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
+// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    _type == "workMeta" => {   "projectType": ^.projectType->title[$locale],  "category": ^.category->title[$locale],  "contribution": ^.contribution[]->title[$locale], },    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
 export type WorkItemQueryResult = {
-  title: string
+  title: string | null
   seoSettings: SeoSettings | null
   pageBuilder: Array<{
     _type: 'workMeta'
     _key: string
+    projectType: Array<{
+      en?: string
+      sv?: string
+    }> | null
+    category: Array<{
+      en?: string
+      sv?: string
+    }> | null
+    contribution: Array<{
+      en?: string
+      sv?: string
+    } | null> | null
     paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
     paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
   }> | null
   translations: Array<{
-    language: string
-    slug: string
+    language: string | null
+    slug: string | null
   } | null> | null
 } | null
 
@@ -468,7 +480,7 @@ export type WorkItemQueryResult = {
 // Variable: workNavigationQuery
 // Query: *[_type == "homePage" && language == $locale][0].workSection.workItems[]->{  "slug": slug.current,  urlPath,  "publishDate": workCard.publishDate}
 export type WorkNavigationQueryResult = Array<{
-  slug: string
+  slug: string | null
   urlPath: string | null
   publishDate: string | null
 }> | null
@@ -479,7 +491,7 @@ declare global {
     '*[_type == "header"][0]{ name }': HeaderQueryResult
     '*[_type == "homePage" && language == $locale][0]{\n  preamble,\n  seoSettings,\n  workSection{\n    title,\n    workItems[]->{\n      _id,\n      slug,\n      urlPath,\n      "category": category->title[$locale],\n      "projectType": projectType->title[$locale],\n      "techStack": techStack[]->title,\n      workCard {\n        heading,\n        publishDate,\n        image {\n          alt,\n          "src": asset->url\n        }\n      }\n    },\n  }\n}': HomePageQueryResult
     '*[_type == "stringTranslation" && language == $locale][0]{ work }': StringTranslationQueryResult
-    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "pageBuilder": \n  pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {\n    _type,\n    _key,\n    "paddingTop": settings.paddingTop,\n    "paddingBottom": settings.paddingBottom,\n  }\n,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
+    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "pageBuilder": \n  pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {\n    _type,\n    _key,\n    _type == "workMeta" => { \n  "projectType": ^.projectType->title[$locale],\n  "category": ^.category->title[$locale],\n  "contribution": ^.contribution[]->title[$locale],\n },\n    "paddingTop": settings.paddingTop,\n    "paddingBottom": settings.paddingBottom,\n  }\n,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
     '*[_type == "homePage" && language == $locale][0].workSection.workItems[]->{\n  "slug": slug.current,\n  urlPath,\n  "publishDate": workCard.publishDate\n}': WorkNavigationQueryResult
   }
 }
