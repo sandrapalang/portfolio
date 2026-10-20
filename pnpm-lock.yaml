@@ -50,6 +50,9 @@ importers:
 
   app:
     dependencies:
+      '@sanity/codegen':
+        specifier: ^8.2.0
+        version: 8.2.0(react@19.2.8)(typescript@5.9.3)
       gsap:
         specifier: ^3.15.0
         version: 3.15.0
@@ -2123,6 +2126,15 @@ packages:
       oxfmt:
         optional: true
 
+  '@sanity/codegen@8.2.0':
+    resolution: {integrity: sha512-bMJuhbXLwMGZfnwenRBa4umhWoO5VTZQhAiXBcO/rwgnzEtA9mF5fv9SYcqX7mj8O3l35XeeETUdi1qZYVg1GQ==}
+    engines: {node: '>=22.12'}
+    peerDependencies:
+      oxfmt: '*'
+    peerDependenciesMeta:
+      oxfmt:
+        optional: true
+
   '@sanity/color@3.0.8':
     resolution: {integrity: sha512-MBQ082q7GRvzSH7Xzx4ul1Kxm/AEKDgwTz5cd13oXIlenl3VAM0Un0QpeTjkC5IZTC7SHbnhwkgoVHTZDz9WKQ==}
     engines: {node: '>=18.0.0'}
@@ -2324,6 +2336,7 @@ packages:
   '@sanity/ui@4.2.6':
     resolution: {integrity: sha512-gw0syNJk/VSLn00Xy3vXqddb9e9o7KUF+gfZ60zb55PPd7pBu4vv9CHFtMhxY6rFXa6dmbL3E0Ye7qYqimU+Pw==}
     engines: {node: '>=22.12'}
+    deprecated: Class names collide with @sanity/ui 4.4.4 (shipped in sanity@6.19.0) when both load on one page, breaking styles. Upgrade to @sanity/ui@^4.4.4.
     peerDependencies:
       react: ^19.2
       react-dom: ^19.2
@@ -2332,6 +2345,7 @@ packages:
   '@sanity/ui@4.3.3':
     resolution: {integrity: sha512-tBBvyvJXlpX4gvfCW80/ThDB/UE23KL3CJbYkvI/vR70frSUIJyHZBgzRomX0FSAkpfar+OopNpF08dIilQukQ==}
     engines: {node: '>=22.12'}
+    deprecated: Class names collide with @sanity/ui 4.4.4 (shipped in sanity@6.19.0) when both load on one page, breaking styles. Upgrade to @sanity/ui@^4.4.4.
     peerDependencies:
       react: ^19.2
       react-dom: ^19.2
@@ -9259,6 +9273,34 @@ snapshots:
       groq-js: 2.0.0
       json5: 2.2.3
       lodash-es: 4.18.1
+      prettier: 3.9.9
+      reselect: 5.3.0
+      tsconfig-paths: 4.2.0
+      valibot: 1.5.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - react
+      - supports-color
+      - typescript
+
+  '@sanity/codegen@8.2.0(react@19.2.8)(typescript@5.9.3)':
+    dependencies:
+      '@babel/core': 7.29.7
+      '@babel/generator': 7.29.8
+      '@babel/preset-env': 7.29.7(@babel/core@7.29.7)
+      '@babel/preset-react': 7.29.7(@babel/core@7.29.7)
+      '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7)
+      '@babel/register': 7.29.7(@babel/core@7.29.7)
+      '@babel/traverse': 7.29.8
+      '@babel/types': 7.29.8
+      '@sanity/telemetry': 1.1.0(react@19.2.8)
+      '@sanity/worker-channels': 2.0.0
+      chokidar: 3.6.0
+      globby: 11.1.0
+      groq: 6.16.0
+      groq-js: 2.0.0
+      json5: 2.2.3
+      lodash-es: 4.18.1
+      obug: 3.0.0
       prettier: 3.9.9
       reselect: 5.3.0
       tsconfig-paths: 4.2.0

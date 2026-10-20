@@ -360,3 +360,90 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint
+
+// Source: ../app/src/lib/sanity/queries/get-header.ts
+// Variable: headerQuery
+// Query: *[_type == "header"][0]{ name }
+export type HeaderQueryResult = {
+  name: string
+} | null
+
+// Source: ../app/src/lib/sanity/queries/get-home-page.ts
+// Variable: homePageQuery
+// Query: *[_type == "homePage" && language == $locale][0]{  preamble,  seoSettings,  workSection{    title,    workItems[]->{      _id,      slug,      urlPath,      "category": category->title[$locale],      "projectType": projectType->title[$locale],      "techStack": techStack[]->title,      workCard {        heading,        publishDate,        image {          alt,          "src": asset->url        }      }    },  }}
+export type HomePageQueryResult = {
+  preamble: string | null
+  seoSettings: SeoSettings | null
+  workSection: {
+    title: string | null
+    workItems: Array<{
+      _id: string
+      slug: Slug
+      urlPath: string | null
+      category: Array<{
+        en?: string
+        sv?: string
+      }>
+      projectType: Array<{
+        en?: string
+        sv?: string
+      }>
+      techStack: Array<string> | null
+      workCard: {
+        heading: string | null
+        publishDate: string | null
+        image: {
+          alt: string | null
+          src: string | null
+        } | null
+      } | null
+    }> | null
+  } | null
+} | null
+
+// Source: ../app/src/lib/sanity/queries/get-string-translation.ts
+// Variable: stringTranslationQuery
+// Query: *[_type == "stringTranslation" && language == $locale][0]{ work }
+export type StringTranslationQueryResult = {
+  work: {
+    comingSoon?: string
+    nextWork?: string
+    previousWork?: string
+  } | null
+} | null
+
+// Source: ../app/src/lib/sanity/queries/get-work-item.ts
+// Variable: workItemQuery
+// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
+export type WorkItemQueryResult = {
+  title: string
+  seoSettings: SeoSettings | null
+  translations: Array<{
+    language: string
+    slug: string
+  } | null> | null
+} | null
+
+// Source: ../app/src/lib/sanity/queries/get-work-navigation.ts
+// Variable: workNavigationQuery
+// Query: *[_type == "homePage" && language == $locale][0].workSection.workItems[]->{  "slug": slug.current,  urlPath,  "publishDate": workCard.publishDate}
+export type WorkNavigationQueryResult = Array<{
+  slug: string
+  urlPath: string | null
+  publishDate: string | null
+}> | null
+
+// Query TypeMap
+declare global {
+  interface SanityQueries {
+    '*[_type == "header"][0]{ name }': HeaderQueryResult
+    '*[_type == "homePage" && language == $locale][0]{\n  preamble,\n  seoSettings,\n  workSection{\n    title,\n    workItems[]->{\n      _id,\n      slug,\n      urlPath,\n      "category": category->title[$locale],\n      "projectType": projectType->title[$locale],\n      "techStack": techStack[]->title,\n      workCard {\n        heading,\n        publishDate,\n        image {\n          alt,\n          "src": asset->url\n        }\n      }\n    },\n  }\n}': HomePageQueryResult
+    '*[_type == "stringTranslation" && language == $locale][0]{ work }': StringTranslationQueryResult
+    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
+    '*[_type == "homePage" && language == $locale][0].workSection.workItems[]->{\n  "slug": slug.current,\n  urlPath,\n  "publishDate": workCard.publishDate\n}': WorkNavigationQueryResult
+  }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module '@sanity/client' {
+  interface SanityQueries extends globalThis.SanityQueries {}
+}

@@ -1,3 +1,7 @@
+import { defineQuery } from 'next-sanity'
+
 import { client } from '../client'
 
-export const getHeader = () => client.fetch(`*[_type == "header"][0]{ name }`)
+const headerQuery = defineQuery(`*[_type == "header"][0]{ name }`)
+
+export const getHeader = () => client.fetch(headerQuery)
