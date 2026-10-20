@@ -1,7 +1,8 @@
 @use '@/styles/breakpoints' as bp;
 
 .section {
-  padding-inline: var(--space-lg);
+  padding-inline: var(--space-sm);
+  padding-top: var(--space-section);
 
   @include bp.bp-up('768') {
     padding-inline: var(--grid-padding);

@@ -1,7 +1,7 @@
 @use '@/styles/breakpoints' as bp;
 
 .gridColumnsLayout {
-  padding-inline: var(--space-lg);
+  padding-inline: var(--space-sm);
 
   @include bp.bp-up('768') {
     padding-inline: var(--grid-padding);

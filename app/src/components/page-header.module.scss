@@ -7,12 +7,12 @@
 
 .section {
   padding-bottom: calc(
-    var(--space-section) - var(--space-sm) - var(--text-h2-font-size)
+    var(--space-section) - var(--space-xs) - var(--text-h2-font-size)
   );
 }
 
 .sectionWorkItem {
-  padding-inline: var(--space-lg);
+  padding-inline: var(--space-sm);
   padding-bottom: var(--space-section); // sätt det du vill för work item
 
   @include bp.bp-up('768') {
