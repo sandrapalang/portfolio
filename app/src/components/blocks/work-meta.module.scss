@@ -1,0 +1,66 @@
+@use '@/styles/breakpoints' as bp;
+
+.gridColumnsLayout {
+  padding-inline: var(--space-lg);
+
+  @include bp.bp-up('768') {
+    padding-inline: var(--grid-padding);
+  }
+}
+
+// Subgrid so each item's span is counted in the page grid, not a new one.
+.gridColumnsLayoutRow {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  row-gap: 32px;
+
+  // 3 items × 3 columns. Starts on the same column as the work-item title.
+  @include bp.bp-up('768') {
+    grid-column: 3 / span 9;
+  }
+
+  @include bp.bp-up('1440') {
+    grid-column: 4 / span 9;
+  }
+
+  @include bp.bp-up('1920') {
+    grid-column: 5 / span 7;
+  }
+}
+
+.gridItemContainer {
+  grid-column: span 3;
+
+  @include bp.bp-up('768') {
+    grid-column: span 3;
+  }
+
+  @include bp.bp-up('1920') {
+    grid-column: span 2;
+  }
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  & > h5,
+  & > ul > li > h5 {
+    font-weight: 350;
+  }
+
+  & > h6 {
+    color: var(--secondary-text);
+    font-weight: 300;
+  }
+
+  & > ul {
+    list-style: none;
+
+    & > li {
+      margin-bottom: 4px;
+    }
+  }
+}

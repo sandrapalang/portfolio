@@ -6,9 +6,9 @@ const Header = async () => {
 
   return (
     <header>
-      <h5>
+      <h4>
         <Link href="/">{header?.name}</Link>
-      </h5>
+      </h4>
     </header>
   )
 }

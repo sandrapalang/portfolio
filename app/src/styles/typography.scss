@@ -17,10 +17,22 @@ $typography-at: (
       'line-height': 40px,
       'font-weight': 450,
     ),
+    'h4': (
+      'font-size': 24px,
+      'line-height': 24px,
+      'font-weight': 450,
+      'letter-spacing': 0.025em,
+    ),
     'h5': (
-      'font-size': 20px,
+      'font-size': 16px,
       'line-height': 20px,
       'font-weight': 450,
+      'letter-spacing': 0.025em,
+    ),
+    h6: (
+      'font-size': 14px,
+      'line-height': 20px,
+      'font-weight': 300,
       'letter-spacing': 0.025em,
     ),
   ),
@@ -29,15 +41,17 @@ $typography-at: (
       'font-size': 80px,
       'line-height': 88px,
     ),
-    'h5': (
-      'font-size': 24px,
-      'line-height': 24px,
-    ),
   ),
   '1920': (
     'h1': (
       'font-size': 88px,
       'line-height': 96px,
+    ),
+    'h5': (
+      'font-size': 18px,
+    ),
+    h6: (
+      'font-size': 16px,
     ),
   ),
 );
