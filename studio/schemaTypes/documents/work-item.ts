@@ -110,6 +110,12 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'pageBuilder',
+      title: 'Page builder',
+      type: 'pageBuilder',
+      group: 'content',
+    }),
+    defineField({
       name: 'seoSettings',
       title: 'SEO settings',
       type: 'seoSettings',

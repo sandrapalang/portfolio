@@ -44,6 +44,8 @@ export type SeoSettings = {
   description?: string
 }
 
+export type PageBuilder = null
+
 export type WorkItemReference = {
   _ref: string
   _type: 'reference'
@@ -183,6 +185,7 @@ export type WorkItem = {
     }
     publishDate?: string
   }
+  pageBuilder?: PageBuilder
   seoSettings?: SeoSettings
   language: string
 }
@@ -334,6 +337,7 @@ export type AllSanitySchemaTypes =
   | StringTranslation
   | Skill
   | SeoSettings
+  | PageBuilder
   | WorkItemReference
   | HomePage
   | Header
