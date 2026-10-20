@@ -1,4 +1,3 @@
-// components/work-meta-preview.tsx
 import { Box, Text } from '@sanity/ui'
 import {
   type ArrayOfObjectsInputProps,

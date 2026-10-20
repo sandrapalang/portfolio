@@ -86,33 +86,6 @@ export type SeoSettings = {
   description?: string
 }
 
-export type RichText = {
-  _type: 'richText'
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  settings?: {
-    paddingTop?: 'none' | 'sm' | 'md' | 'lg'
-    paddingBottom?: 'none' | 'sm' | 'md' | 'lg'
-    hideBlockFromPage?: boolean
-  }
-}
-
 export type PageBuilder = Array<
   {
     _key: string
@@ -394,7 +367,6 @@ export type AllSanitySchemaTypes =
   | StringTranslation
   | Skill
   | SeoSettings
-  | RichText
   | PageBuilder
   | WorkItemReference
   | HomePage

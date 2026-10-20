@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "@sanity/document-internationalization": "6.2.39",
+    "@sanity/ui": "4.4.9",
     "@sanity/vision": "6.16.0",
     "lucide-react": "1.48.0",
     "react": "19.2.4",
