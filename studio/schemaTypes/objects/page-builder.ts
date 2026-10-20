@@ -1,6 +1,11 @@
 import { defineArrayMember, defineType } from 'sanity'
 
 import {
+  icon as richTextIcon,
+  title as richTextTitle,
+  type as richTextType,
+} from '@/schemaTypes/blocks/rich-text'
+import {
   icon as workMetaIcon,
   title as workMetaTitle,
   type as workMetaType,
@@ -18,6 +23,11 @@ export default defineType({
       type: workMetaType,
       icon: workMetaIcon,
       title: workMetaTitle,
+    }),
+    defineArrayMember({
+      icon: richTextIcon,
+      title: richTextTitle,
+      type: richTextType,
     }),
   ],
 })

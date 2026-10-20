@@ -21,6 +21,12 @@ export type Settings = {
   hideBlockFromPage?: boolean
 }
 
+export type RichTextSettings = {
+  paddingTop?: 'none' | 'sm' | 'md' | 'lg'
+  paddingBottom?: 'none' | 'sm' | 'md' | 'lg'
+  hideBlockFromPage?: boolean
+}
+
 export type ProjectTypeReference = {
   _ref: string
   _type: 'reference'
@@ -77,7 +83,7 @@ export type Skill = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
 }
 
 export type SeoSettings = {
@@ -86,11 +92,70 @@ export type SeoSettings = {
   description?: string
 }
 
-export type PageBuilder = Array<
-  {
+export type RichTextAdvanced = {
+  _type: 'richTextAdvanced'
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'h4' | 'h6' | 'h5' | 'normal'
+    listItem?: never
+    markDefs?: Array<
+      {
+        _key: string
+      } & Link
+    >
+    level?: number
+    _type: 'block'
     _key: string
-  } & WorkMeta
+  }>
+}
+
+export type RichText = {
+  _type: 'richText'
+  content?: RichTextAdvanced
+  settings?: RichTextSettings
+}
+
+export type PageBuilder = Array<
+  | ({
+      _key: string
+    } & WorkMeta)
+  | ({
+      _key: string
+    } & RichText)
 >
+
+export type Header = {
+  _id: string
+  _type: 'header'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+}
+
+export type Contribution = {
+  _id: string
+  _type: 'contribution'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: {
+    en?: string
+    sv?: string
+  }
+}
+
+export type HomePageReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'homePage'
+}
 
 export type WorkItemReference = {
   _ref: string
@@ -99,13 +164,42 @@ export type WorkItemReference = {
   [internalGroqTypeReferenceTo]?: 'workItem'
 }
 
+export type SanityFileAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+}
+
+export type Link = {
+  _type: 'link'
+  text?: string
+  type: string
+  internalLink?: HomePageReference | WorkItemReference
+  url?: string
+  email?: string
+  phone?: string
+  assetLink?: {
+    asset?: SanityFileAssetReference
+    media?: unknown
+    _type: 'file'
+  }
+  sms?: string
+  whatsapp?: string
+  fax?: string
+  value?: string
+  blank?: boolean
+  parameters?: string
+  anchor?: string
+}
+
 export type HomePage = {
   _id: string
   _type: 'homePage'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
   preamble?: string
   urlPath?: string
   workSection?: {
@@ -118,27 +212,6 @@ export type HomePage = {
   }
   seoSettings?: SeoSettings
   language?: string
-}
-
-export type Header = {
-  _id: string
-  _type: 'header'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-}
-
-export type Contribution = {
-  _id: string
-  _type: 'contribution'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: {
-    en?: string
-    sv?: string
-  }
 }
 
 export type TranslationMetadata = {
@@ -160,7 +233,7 @@ export type InternationalizedArrayReference = Array<
 export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue'
   value?: WorkItemReference
-  language?: string
+  language: string
 }
 
 export type SkillReference = {
@@ -183,11 +256,11 @@ export type WorkItem = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   urlPath?: string
-  projectType?: ProjectTypeReference
-  category?: CategoryReference
+  projectType: ProjectTypeReference
+  category: CategoryReference
   contribution?: Array<
     {
       _key: string
@@ -212,23 +285,23 @@ export type WorkItem = {
   }
   pageBuilder?: PageBuilder
   seoSettings?: SeoSettings
-  language?: string
+  language: string
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type Category = {
@@ -237,7 +310,7 @@ export type Category = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: {
+  title: {
     en?: string
     sv?: string
   }
@@ -249,7 +322,7 @@ export type ProjectType = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: {
+  title: {
     en?: string
     sv?: string
   }
@@ -257,7 +330,7 @@ export type ProjectType = {
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 
@@ -282,9 +355,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageMetadata = {
@@ -310,14 +383,14 @@ export type SanityFileAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   source?: SanityAssetSourceData
 }
 
@@ -339,14 +412,14 @@ export type SanityImageAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   metadata?: SanityImageMetadata
   source?: SanityAssetSourceData
 }
@@ -360,6 +433,7 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Settings
+  | RichTextSettings
   | ProjectTypeReference
   | CategoryReference
   | ContributionReference
@@ -367,11 +441,16 @@ export type AllSanitySchemaTypes =
   | StringTranslation
   | Skill
   | SeoSettings
+  | RichTextAdvanced
+  | RichText
   | PageBuilder
-  | WorkItemReference
-  | HomePage
   | Header
   | Contribution
+  | HomePageReference
+  | WorkItemReference
+  | SanityFileAssetReference
+  | Link
+  | HomePage
   | TranslationMetadata
   | InternationalizedArrayReference
   | InternationalizedArrayReferenceValue
@@ -396,7 +475,7 @@ export type AllSanitySchemaTypes =
 // Variable: headerQuery
 // Query: *[_type == "header"][0]{ name }
 export type HeaderQueryResult = {
-  name: string | null
+  name: string
 } | null
 
 // Source: ../app/src/lib/sanity/queries/get-home-page.ts
@@ -409,17 +488,17 @@ export type HomePageQueryResult = {
     title: string | null
     workItems: Array<{
       _id: string
-      slug: Slug | null
+      slug: Slug
       urlPath: string | null
       category: Array<{
         en?: string
         sv?: string
-      }> | null
+      }>
       projectType: Array<{
         en?: string
         sv?: string
-      }> | null
-      techStack: Array<string | null> | null
+      }>
+      techStack: Array<string> | null
       workCard: {
         heading: string | null
         publishDate: string | null
@@ -450,29 +529,37 @@ export type StringTranslationQueryResult = {
 // Variable: workItemQuery
 // Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    _type == "workMeta" => {   "projectType": ^.projectType->title[$locale],  "category": ^.category->title[$locale],  "contribution": ^.contribution[]->title[$locale], },    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
 export type WorkItemQueryResult = {
-  title: string | null
+  title: string
   seoSettings: SeoSettings | null
-  pageBuilder: Array<{
-    _type: 'workMeta'
-    _key: string
-    projectType: Array<{
-      en?: string
-      sv?: string
-    }> | null
-    category: Array<{
-      en?: string
-      sv?: string
-    }> | null
-    contribution: Array<{
-      en?: string
-      sv?: string
-    } | null> | null
-    paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
-    paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
-  }> | null
+  pageBuilder: Array<
+    | {
+        _type: 'richText'
+        _key: string
+        paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
+        paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
+      }
+    | {
+        _type: 'workMeta'
+        _key: string
+        projectType: Array<{
+          en?: string
+          sv?: string
+        }>
+        category: Array<{
+          en?: string
+          sv?: string
+        }>
+        contribution: Array<{
+          en?: string
+          sv?: string
+        }> | null
+        paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
+        paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
+      }
+  > | null
   translations: Array<{
-    language: string | null
-    slug: string | null
+    language: string
+    slug: string
   } | null> | null
 } | null
 
@@ -480,7 +567,7 @@ export type WorkItemQueryResult = {
 // Variable: workNavigationQuery
 // Query: *[_type == "homePage" && language == $locale][0].workSection.workItems[]->{  "slug": slug.current,  urlPath,  "publishDate": workCard.publishDate}
 export type WorkNavigationQueryResult = Array<{
-  slug: string | null
+  slug: string
   urlPath: string | null
   publishDate: string | null
 }> | null

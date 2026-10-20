@@ -1,3 +1,5 @@
+import richText from './blocks/rich-text'
+import richTextField from './blocks/rich-text-advanced'
 import workMeta from './blocks/work-meta'
 import category from './documents/category'
 import contribution from './documents/contribution'
@@ -17,6 +19,8 @@ export const schemaTypes = [
   homePage,
   pageBuilder,
   projectType,
+  richText,
+  richTextField,
   seoSettings,
   skill,
   stringTranslation,
