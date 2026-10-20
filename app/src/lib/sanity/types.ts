@@ -418,10 +418,11 @@ export type StringTranslationQueryResult = {
 
 // Source: ../app/src/lib/sanity/queries/get-work-item.ts
 // Variable: workItemQuery
-// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
+// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
 export type WorkItemQueryResult = {
   title: string
   seoSettings: SeoSettings | null
+  pageBuilder: null
   translations: Array<{
     language: string
     slug: string
@@ -443,7 +444,7 @@ declare global {
     '*[_type == "header"][0]{ name }': HeaderQueryResult
     '*[_type == "homePage" && language == $locale][0]{\n  preamble,\n  seoSettings,\n  workSection{\n    title,\n    workItems[]->{\n      _id,\n      slug,\n      urlPath,\n      "category": category->title[$locale],\n      "projectType": projectType->title[$locale],\n      "techStack": techStack[]->title,\n      workCard {\n        heading,\n        publishDate,\n        image {\n          alt,\n          "src": asset->url\n        }\n      }\n    },\n  }\n}': HomePageQueryResult
     '*[_type == "stringTranslation" && language == $locale][0]{ work }': StringTranslationQueryResult
-    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
+    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "pageBuilder": \n  pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {\n    _type,\n    _key,\n    "paddingTop": settings.paddingTop,\n    "paddingBottom": settings.paddingBottom,\n  }\n,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
     '*[_type == "homePage" && language == $locale][0].workSection.workItems[]->{\n  "slug": slug.current,\n  urlPath,\n  "publishDate": workCard.publishDate\n}': WorkNavigationQueryResult
   }
 }

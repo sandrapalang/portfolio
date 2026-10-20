@@ -54,7 +54,13 @@ const WorkItemPage = async ({
   return (
     <div>
       <WorkItemTemplate
-        workItem={{ ...workItem, next: neighbor(1), previous: neighbor(-1) }}
+        workItem={{
+          ...workItem,
+          title: workItem.title ?? undefined,
+          pageBuilder: workItem.pageBuilder ?? undefined,
+          next: neighbor(1),
+          previous: neighbor(-1),
+        }}
       />
     </div>
   )
