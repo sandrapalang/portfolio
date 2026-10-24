@@ -1,0 +1,103 @@
+.standalone {
+  position: relative;
+  text-decoration-line: none;
+
+  &::after {
+    content: '';
+    inset: -6px -3px;
+    position: absolute;
+  }
+
+  &::before {
+    background-color: currentcolor;
+    bottom: -4px;
+    content: '';
+    height: 1.15px;
+    left: 0;
+    position: absolute;
+    transition: width 0.4s ease-in-out;
+    width: 100%;
+  }
+
+  &:hover {
+    &::before {
+      left: auto;
+      right: 0;
+      width: 0;
+    }
+  }
+}
+
+h4 > .standalone {
+  font-weight: calc(var(--text-h4-font-weight) + 125);
+
+  &::before {
+    height: 2.5px;
+  }
+}
+
+h5 > .standalone {
+  font-weight: calc(var(--text-h5-font-weight) + 125);
+
+  &::before {
+    bottom: -3px;
+    height: 1.8px;
+  }
+}
+
+h6 > .standalone {
+  font-weight: calc(var(--text-h6-font-weight) + 150);
+
+  &::before {
+    height: 1.8px;
+  }
+}
+
+p > .standalone {
+  font-weight: calc(var(--text-p-font-weight) + 200);
+
+  &::before {
+    height: 1.5px;
+  }
+}
+
+.inline {
+  background-image: linear-gradient(#fef08a, #fef08a);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  box-decoration-break: clone;
+  margin-block: -1px;
+  margin-inline: -4px;
+  padding-block: 1px;
+  padding-inline: 4px;
+  position: relative;
+  transition: background-size 0.35s ease-in-out;
+
+  &::after {
+    content: '';
+    inset: -6px -3px;
+    position: absolute;
+  }
+
+  &:hover {
+    background-position: left center;
+    background-size: 100% 100%;
+  }
+}
+
+h4 > .inline {
+  font-weight: calc(var(--text-h4-font-weight) + 125);
+}
+
+h5 > .inline {
+  font-weight: calc(var(--text-h5-font-weight) + 125);
+}
+
+h6 > .inline {
+  font-weight: calc(var(--text-h6-font-weight) + 150);
+}
+
+p > .inline {
+  font-weight: calc(var(--text-p-font-weight) + 200);
+}
