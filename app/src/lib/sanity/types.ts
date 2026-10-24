@@ -527,7 +527,7 @@ export type StringTranslationQueryResult = {
 
 // Source: ../app/src/lib/sanity/queries/get-work-item.ts
 // Variable: workItemQuery
-// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    _type == "workMeta" => {   "projectType": ^.projectType->title[$locale],  "category": ^.category->title[$locale],  "contribution": ^.contribution[]->title[$locale], },    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
+// Query: *[_type == "workItem" && language == $locale && slug.current == $slug][0]{  title,  seoSettings,  "pageBuilder":   pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {    _type,    _key,    _type == "richText" => {   content { text[]{..., markDefs[]{..., _type == "link" => {..., internalLink->{_type, urlPath, title}}}} } },    _type == "workMeta" => {   "projectType": ^.projectType->title[$locale],  "category": ^.category->title[$locale],  "contribution": ^.contribution[]->title[$locale], },    "paddingTop": settings.paddingTop,    "paddingBottom": settings.paddingBottom,  },  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{    language,    "slug": slug.current  }}
 export type WorkItemQueryResult = {
   title: string
   seoSettings: SeoSettings | null
@@ -535,6 +535,54 @@ export type WorkItemQueryResult = {
     | {
         _type: 'richText'
         _key: string
+        content: {
+          text: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: never
+            markDefs: Array<{
+              _key: string
+              _type: 'link'
+              text?: string
+              type: string
+              internalLink:
+                | {
+                    _type: 'homePage'
+                    urlPath: string | null
+                    title: string
+                  }
+                | {
+                    _type: 'workItem'
+                    urlPath: string | null
+                    title: string
+                  }
+                | null
+              url?: string
+              email?: string
+              phone?: string
+              assetLink?: {
+                asset?: SanityFileAssetReference
+                media?: unknown
+                _type: 'file'
+              }
+              sms?: string
+              whatsapp?: string
+              fax?: string
+              value?: string
+              blank?: boolean
+              parameters?: string
+              anchor?: string
+            }> | null
+            level?: number
+            _type: 'block'
+            _key: string
+          }> | null
+        } | null
         paddingTop: 'lg' | 'md' | 'none' | 'sm' | null
         paddingBottom: 'lg' | 'md' | 'none' | 'sm' | null
       }
@@ -578,7 +626,7 @@ declare global {
     '*[_type == "header"][0]{ name }': HeaderQueryResult
     '*[_type == "homePage" && language == $locale][0]{\n  preamble,\n  seoSettings,\n  workSection{\n    title,\n    workItems[]->{\n      _id,\n      slug,\n      urlPath,\n      "category": category->title[$locale],\n      "projectType": projectType->title[$locale],\n      "techStack": techStack[]->title,\n      workCard {\n        heading,\n        publishDate,\n        image {\n          alt,\n          "src": asset->url\n        }\n      }\n    },\n  }\n}': HomePageQueryResult
     '*[_type == "stringTranslation" && language == $locale][0]{ work }': StringTranslationQueryResult
-    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "pageBuilder": \n  pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {\n    _type,\n    _key,\n    _type == "workMeta" => { \n  "projectType": ^.projectType->title[$locale],\n  "category": ^.category->title[$locale],\n  "contribution": ^.contribution[]->title[$locale],\n },\n    "paddingTop": settings.paddingTop,\n    "paddingBottom": settings.paddingBottom,\n  }\n,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
+    '*[_type == "workItem" && language == $locale && slug.current == $slug][0]{\n  title,\n  seoSettings,\n  "pageBuilder": \n  pageBuilder[!defined(settings.hideBlockFromPage) || settings.hideBlockFromPage != true] {\n    _type,\n    _key,\n    _type == "richText" => { \n  content { text[]{..., markDefs[]{..., _type == "link" => {..., internalLink->{_type, urlPath, title}}}} }\n },\n    _type == "workMeta" => { \n  "projectType": ^.projectType->title[$locale],\n  "category": ^.category->title[$locale],\n  "contribution": ^.contribution[]->title[$locale],\n },\n    "paddingTop": settings.paddingTop,\n    "paddingBottom": settings.paddingBottom,\n  }\n,\n  "translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current\n  }\n}': WorkItemQueryResult
     '*[_type == "homePage" && language == $locale][0].workSection.workItems[]->{\n  "slug": slug.current,\n  urlPath,\n  "publishDate": workCard.publishDate\n}': WorkNavigationQueryResult
   }
 }

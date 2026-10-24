@@ -50,6 +50,9 @@ importers:
 
   app:
     dependencies:
+      '@portabletext/react':
+        specifier: ^8.0.1
+        version: 8.0.1(react@19.2.8)
       '@sanity/codegen':
         specifier: ^8.2.0
         version: 8.2.0(react@19.2.8)(typescript@5.9.3)

@@ -1,5 +1,6 @@
 import { type ComponentType, type CSSProperties } from 'react'
 
+import RichTextBlock from '@/components/blocks/rich-text'
 import WorkMeta from '@/components/blocks/work-meta'
 
 type PageBuilderBlock = {
@@ -14,6 +15,7 @@ type PageBuilderProps = {
 }
 
 const blockComponents: Record<string, ComponentType<PageBuilderBlock>> = {
+  richText: RichTextBlock as ComponentType<PageBuilderBlock>,
   workMeta: WorkMeta as ComponentType<PageBuilderBlock>,
 }
 
