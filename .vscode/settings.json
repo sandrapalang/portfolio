@@ -10,5 +10,6 @@
     "import/newline-after-import",
     "import/no-duplicates",
     "react/jsx-sort-props"
-  ]
+  ],
+  "scss.lint.unknownProperties": "ignore"
 }
